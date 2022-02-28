@@ -1,2 +1,3 @@
-# Smile
-The starting version of the smile cafe 
+#smile 
+The starting version of the smile cafe
+
