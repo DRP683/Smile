@@ -1,7 +1,9 @@
 from flask import Flask
+
 app = Flask(__name__)
 
-#comment
+
+# comment
 @app.route('/')
 def hello_world():
     return '<h1>Hello, World!</h1>'
