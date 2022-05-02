@@ -1,4 +1,4 @@
-#Video 6 time 16:17
+#Video 8a time 2:55
 
 from flask import Flask, render_template
 import sqlite3
@@ -44,5 +44,13 @@ def render_menu_page():
 @app.route('/contact')
 def render_contact_page():
     return render_template('contact.html')
+
+@app.route('/login')
+def render_login_page():
+    return render_template("login.html")
+
+@app.route('/signup', methods=["GET", "POST"])
+def render_signup_page():
+    return render_template("signup.html")
 
 app.run(host='0.0.0.0')
