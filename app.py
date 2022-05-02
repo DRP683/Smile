@@ -15,6 +15,8 @@ def create_connection(db_file):
     except Error as e:
         print(e)
 
+    return None
+
 
 @app.route('/')
 def render_homepage():
@@ -22,20 +24,20 @@ def render_homepage():
 
 @app.route('/menu')
 def render_menu_page():
-    #connect to database
+
+    # connect to database
     con = create_connection(DB_NAME)
 
-    query = "SELECT name, description, volume, price, image, FROM product"
-    products = [["Flat white", "Definietly created in New Zealand (not in the West Island) - a classic", "180mL", "flatwhite", "4.00"],
-                ["Latte",	"The New Zealand latte is larger than a flat white and has more foamy milk.", "240mL",	"latte",	"4.00",],
-                ["Espresso", "Straight from the machine, 60mL including crema.", "60mL", "espresso", "3.00"],
-                ["Long black",	"Hot water + espresso 120mL.",	"90mL",	"longblack", "3.00"]]
+    # SELECT the things you want from your table(s)
+    query = "SELECT name, description, volume, price, image FROM product"
 
-    #save query
-    # run query on db
-    #catchall the results abd save as product_list
-    # pass to menu.html render('menut.html, products=product_list
-    return render_template('menu.html', products=products)
+
+    cur = con.cursor()  # Make a cursor
+    cur.execute(query)  # Execute query
+    product_list = cur.fetchall()  # put the result into the
+    con.close()  # Close connections
+
+    return render_template('menu.html', products=product_list)
 
 @app.route('/contact')
 def render_contact_page():
