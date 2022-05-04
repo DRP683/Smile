@@ -21,6 +21,11 @@
         <a href="/menu">menu</a> &#8226;
         <a href="/contact">contact</a> &#8226;
         <a href="/login">login</a>
+        {% if logged_in %}
+            logged in
+        {% else %}
+            not logged in
+        {% endif %}
     </nav>
     <main>
         {% block main %}
